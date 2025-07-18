@@ -1,5 +1,6 @@
 -- autoTradeSand - Minimal sand trading addon
 -- Author: Feraline@Spineshatter
+-- Based on working WaterDispenser pattern
 
 local ATS_Config = ATS_Config or {
     enabled = false,
@@ -10,81 +11,72 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("TRADE_SHOW")
 frame:RegisterEvent("VARIABLES_LOADED")
 
-local tradeState = nil
-local tradeData = {}
-
 frame:SetScript("OnEvent", function(self, event, ...)
     if event == "VARIABLES_LOADED" then
         print("|cFF00FF00autoTradeSand loaded! Use /ats start or /ats 2|r")
     elseif event == "TRADE_SHOW" and ATS_Config.enabled then
         print("|cFFFFFF00Trade window opened - autoTradeSand triggered|r")
-        -- Reset trade state
-        tradeState = "populate"
-        tradeData.slotID = 1
-        tradeData.numAttempts = 0
-        tradeData.containerLocation = nil
-        
-        -- Start the trade process
-        C_Timer.After(0.1, function()
-            TradeSand()
+        -- Simple delay then trade
+        C_Timer.After(0.2, function()
+            SimpleTradeSand()
         end)
     end
 end)
 
-function TradeSand()
-    if not ATS_Config.enabled or tradeState ~= "populate" then 
-        print("|cFFFF0000TradeSand: Not enabled or wrong state|r")
+function SimpleTradeSand()
+    if not ATS_Config.enabled then 
+        print("|cFFFF0000SimpleTradeSand: Not enabled|r")
         return 
     end
     
-    print("|cFFFFFF00Searching for Hourglass Sand in bags...|r")
+    print("|cFFFFFF00Searching for Hourglass Sand...|r")
     
     -- Find Hourglass Sand in bags
     for bag = 0, 4 do
         for slot = 1, GetContainerNumSlots(bag) do
             local itemLink = GetContainerItemLink(bag, slot)
-            if itemLink then
-                print("|cFFFFFF00Found item in bag " .. bag .. " slot " .. slot .. ": " .. itemLink .. "|r")
-                if string.find(itemLink, "Hourglass Sand") then
-                    print("|cFF00FF00Found Hourglass Sand!|r")
-                    local _, itemCount = GetContainerItemInfo(bag, slot)
-                    print("|cFFFFFF00Item count: " .. itemCount .. "|r")
-                    if itemCount >= ATS_Config.sandCount then
-                        print("|cFF00FF00Attempting to pick up " .. ATS_Config.sandCount .. " sand...|r")
-                        -- Pick up the sand
-                        PickupContainerItem(bag, slot)
-                        
-                        -- Wait a frame to ensure the item is on cursor
-                        C_Timer.After(0.05, function()
-                            if CursorHasItem() then
-                                print("|cFF00FF00Item on cursor, clicking trade button...|r")
-                                -- Put it in the first trade slot
-                                ClickTradeButton(1)
-                                print("|cFF00FF00Traded " .. ATS_Config.sandCount .. " Hourglass Sand|r")
-                                tradeState = nil
-                            else
-                                print("|cFFFF0000Item not on cursor, retrying...|r")
-                                -- Try again if item didn't get picked up
-                                tradeData.numAttempts = tradeData.numAttempts + 1
-                                if tradeData.numAttempts < 10 then
-                                    C_Timer.After(0.1, TradeSand)
-                                else
-                                    print("|cFFFF0000Failed to pick up Hourglass Sand after 10 attempts|r")
-                                    tradeState = nil
-                                end
-                            end
-                        end)
-                        return
-                    else
-                        print("|cFFFF0000Not enough sand (need " .. ATS_Config.sandCount .. ", have " .. itemCount .. ")|r")
-                    end
+            if itemLink and string.find(itemLink, "Hourglass Sand") then
+                print("|cFF00FF00Found Hourglass Sand in bag " .. bag .. " slot " .. slot .. "|r")
+                local _, itemCount = GetContainerItemInfo(bag, slot)
+                print("|cFFFFFF00Item count: " .. itemCount .. "|r")
+                
+                if itemCount >= ATS_Config.sandCount then
+                    print("|cFF00FF00Attempting to trade " .. ATS_Config.sandCount .. " sand...|r")
+                    
+                    -- Simple approach: just pick up and click
+                    PickupContainerItem(bag, slot)
+                    
+                    -- Wait a moment then click trade button
+                    C_Timer.After(0.1, function()
+                        if CursorHasItem() then
+                            print("|cFF00FF00Item on cursor, clicking trade button...|r")
+                            ClickTradeButton(1)
+                            print("|cFF00FF00Successfully traded " .. ATS_Config.sandCount .. " Hourglass Sand|r")
+                        else
+                            print("|cFFFF0000Item not on cursor, trying again...|r")
+                            -- Try one more time
+                            C_Timer.After(0.1, function()
+                                PickupContainerItem(bag, slot)
+                                C_Timer.After(0.1, function()
+                                    if CursorHasItem() then
+                                        ClickTradeButton(1)
+                                        print("|cFF00FF00Successfully traded " .. ATS_Config.sandCount .. " Hourglass Sand (retry)|r")
+                                    else
+                                        print("|cFFFF0000Failed to pick up Hourglass Sand|r")
+                                    end
+                                end)
+                            end)
+                        end
+                    end)
+                    return
+                else
+                    print("|cFFFF0000Not enough sand (need " .. ATS_Config.sandCount .. ", have " .. itemCount .. ")|r")
                 end
             end
         end
     end
     
     print("|cFFFF0000No Hourglass Sand found in bags!|r")
-    tradeState = nil
 end
 
 -- Manual trade function
@@ -108,11 +100,10 @@ function ManualTradeSand()
                     -- Pick up the sand
                     PickupContainerItem(bag, slot)
                     
-                    -- Wait a frame to ensure the item is on cursor
-                    C_Timer.After(0.05, function()
+                    -- Wait a moment then click trade button
+                    C_Timer.After(0.1, function()
                         if CursorHasItem() then
                             print("|cFF00FF00Manual trade: Item on cursor, clicking trade button...|r")
-                            -- Put it in the first trade slot
                             ClickTradeButton(1)
                             print("|cFF00FF00Manually traded " .. ATS_Config.sandCount .. " Hourglass Sand|r")
                         else
@@ -147,7 +138,6 @@ SlashCmdList["AUTOTRADESAND"] = function(msg)
         print("|cFF00FF00autoTradeSand enabled! Will trade 2 sand.|r")
     elseif command == "stop" or command == "off" then
         ATS_Config.enabled = false
-        tradeState = nil
         print("|cFFFF0000autoTradeSand disabled!|r")
     elseif command == "trade" then
         -- Manual trade command - works even if auto is disabled
