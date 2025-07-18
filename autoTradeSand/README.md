@@ -1,6 +1,6 @@
 # autoTradeSand
 
-A minimal WoW Classic Era addon that automatically trades Hourglass Sand when someone opens a trade window with you.
+A minimal WoW Classic addon that automatically trades Hourglass Sand when someone opens a trade window with you.
 
 ## Features
 
@@ -9,6 +9,7 @@ A minimal WoW Classic Era addon that automatically trades Hourglass Sand when so
 - **Manual trading** - Use `/ats trade` when you start a trade
 - **Configurable amount** - Trade 1 or 2 sand
 - **Lightweight** - Only 2 files, minimal code
+- **Vanilla Classic compatible** - Works on Classic Era servers
 
 ## Installation
 
@@ -38,7 +39,7 @@ A minimal WoW Classic Era addon that automatically trades Hourglass Sand when so
 
 ## Requirements
 
-- WoW Classic Era
+- WoW Classic (Vanilla)
 - Hourglass Sand in your bags
 
 ## Author
