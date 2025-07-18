@@ -1,9 +1,0 @@
-## Interface: 11507
-## Title: Sand Dispenser
-## Notes: Automatic Hourglass Sand trading for WoW Classic
-## Version: 1.0
-## Author: Feraline@Spineshatter (Based on WaterDispenser by GPI/Junsa)
-## DefaultState: enabled
-## SavedVariablesPerCharacter: SandDispenserDB
-
-SandDispenser.lua 

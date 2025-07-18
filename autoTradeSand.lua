@@ -1,5 +1,5 @@
 --[[
-SandDispenser - Automatic Hourglass Sand trading for WoW Classic
+autoTradeSand - Automatic Hourglass Sand trading for WoW Classic
 Based on WaterDispenser by GPI / Erytheia-Razorfen / Junsa
 Modified for Hourglass Sand by Feraline@Spineshatter
 
@@ -18,11 +18,11 @@ local L = setmetatable({}, {__index = function (t, k)
 		return "["..k.."]"
 	end
 end})
-SANDDISPENSER_ADDON=ADDON
+AUTOTRADESAND_ADDON=ADDON
 ADDON.Version=GetAddOnMetadata(TOCNAME, "Version")
 ADDON.SettingsVersion=1
 ADDON.Title=GetAddOnMetadata(TOCNAME, "Title")
-ADDON.PREFIX="[SD]: "
+ADDON.PREFIX="[ATS]: "
 
 local T=":0:0:0:0:64:64:4:60:4:60"
 
@@ -191,9 +191,9 @@ end
 
 local function Event_ADDON_LOADED(arg1)
 	if arg1 == TOCNAME then
-		if not SandDispenserDB then SandDispenserDB = {} end
+		if not autoTradeSandDB then autoTradeSandDB = {} end
 
-		ADDON.DB=SandDispenserDB
+		ADDON.DB=autoTradeSandDB
 
 		-- Initialize default settings
 		if not ADDON.DB.SandCount then
@@ -204,7 +204,7 @@ local function Event_ADDON_LOADED(arg1)
 		end
 
 		print("|cFFFF1C1C Loaded: "..GetAddOnMetadata(TOCNAME, "Title") .." ".. GetAddOnMetadata(TOCNAME, "Version") .." by "..GetAddOnMetadata(TOCNAME, "Author"))
-		print(ADDON.PREFIX,"Use /sd help for commands")
+		print(ADDON.PREFIX,"Use /ats help for commands")
 	end
 end
 
@@ -248,13 +248,13 @@ local function SlashCommand(msg)
 	local command = string.lower(msg)
 	
 	if command == "help" or command == "" then
-		print("|cFFFFFF00SandDispenser commands:|r")
-		print("|cFFFFFF00/sd fill|r - Manually fill trade with sand")
-		print("|cFFFFFF00/sd clear|r - Clear trade window")
-		print("|cFFFFFF00/sd auto|r - Toggle automatic filling")
-		print("|cFFFFFF00/sd 1|r - Set sand count to 1")
-		print("|cFFFFFF00/sd 2|r - Set sand count to 2")
-		print("|cFFFFFF00/sd status|r - Show current settings")
+		print("|cFFFFFF00autoTradeSand commands:|r")
+		print("|cFFFFFF00/ats fill|r - Manually fill trade with sand")
+		print("|cFFFFFF00/ats clear|r - Clear trade window")
+		print("|cFFFFFF00/ats auto|r - Toggle automatic filling")
+		print("|cFFFFFF00/ats 1|r - Set sand count to 1")
+		print("|cFFFFFF00/ats 2|r - Set sand count to 2")
+		print("|cFFFFFF00/ats status|r - Show current settings")
 	elseif command == "fill" then
 		if TradeFrame:IsVisible() then
 			ADDON.FillTrade(true)
@@ -280,14 +280,14 @@ local function SlashCommand(msg)
 		print(ADDON.PREFIX,"Auto fill:", ADDON.DB.AutoFill and "ON" or "OFF")
 		print(ADDON.PREFIX,"Sand count:", ADDON.DB.SandCount)
 	else
-		print(ADDON.PREFIX,"Unknown command. Use /sd help for commands")
+		print(ADDON.PREFIX,"Unknown command. Use /ats help for commands")
 	end
 end
 
 -- Register slash commands
-SLASH_SANDDISPENSER1 = "/sd"
-SLASH_SANDDISPENSER2 = "/sanddispenser"
-SlashCmdList["SANDDISPENSER"] = SlashCommand
+SLASH_AUTOTRADESAND1 = "/ats"
+SLASH_AUTOTRADESAND2 = "/autotradesand"
+SlashCmdList["AUTOTRADESAND"] = SlashCommand
 
 -- Register events
 local frame = CreateFrame("Frame")

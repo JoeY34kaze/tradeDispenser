@@ -1,8 +1,0 @@
-## Interface: 11300
-## Title: autoTradeSand
-## Notes: Minimal addon to automatically trade Hourglass Sand. Use /ats start or /ats 2
-## Author: Feraline@Spineshatter
-## DefaultState: enabled
-## SavedVariables: ATS_Config
-
-autoTradeSand.lua 
