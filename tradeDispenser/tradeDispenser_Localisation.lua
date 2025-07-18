@@ -22,7 +22,8 @@ function tradeDispenser_GetEnglish()
 			[2] = "|cFFFFFFFF   Version:   |cFF45E849"..tradeDispenser_Version,
 			[3] = "|cFFFFFFFF   Author:     |cFF45E849Kaboom  @ Arthas (EU)",
 			[4] = "|cFFFFFFFF   Core:       |cFF45E849Shag    @ Arthas (EU)",
-			[5] = "|cFFFFFFFF   More:       |cFF45E849Please read the ReadMe",
+			[5] = "|cFFFFFFFF   Sand Edition: |cFF45E849Feraline @ Spineshatter",
+			[6] = "|cFFFFFFFF   More:       |cFF45E849Please read the ReadMe",
 		},
 		["help"]		= {	-- open end. could have more than 9 lines
 			[1] = "|cFF7E9CE5Prefix:",
@@ -150,7 +151,7 @@ function tradeDispenser_GetEnglish()
 			["scale"]		= "Scale:",
 			["autobroadcast"]	= "Auto-Broadcast:",
 			["once"]		= "Once",
-			["DisplayStock"]	= "Display Water/Food stock",
+			["DisplayStock"]	= "Display Sand/Food stock",
 			["PlaySounds"]		= "Play Sounds",
 			["randomtext"]	= "Random Text:",
 			["Hint"]	= {	-- open end. could have more than 4 lines
@@ -645,7 +646,7 @@ function tradeDispenser_GetChinese()
 			["scale"]		= "缩放:",
 			["autobroadcast"]	= "自动广播:",
 			["once"]		= "一次",
-			["DisplayStock"]	= "Display Water/Food Stock",
+			["DisplayStock"]	= "Display Sand/Food Stock",
 			["PlaySounds"]		= "Play Sounds",
 			["randomtext"]	= "随机广播数:",
 			["Hint"]	= {	-- open end. could have more than 4 lines

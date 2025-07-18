@@ -1,6 +1,6 @@
-# tradeDispenser
+# tradeDispenser (Sand Edition)
 
-tradeDispenser is an addon made for lazy mages. It allows to automatically trade any water or food you have in your bags.
+tradeDispenser is an addon made for lazy mages. It allows to automatically trade any sand or food you have in your bags.
 
 You can take this configuration as a basic reference (CTRL-click to have a full size view in a new tab) :
 
@@ -8,9 +8,9 @@ You can take this configuration as a basic reference (CTRL-click to have a full 
 
 This is what every class will get from each trade :
 - Rogues / Warriors: 20 x Conjured Cinnamon Roll
-- Druids / Paladins / Priests : 40 x Conjured Crystal Water
-- Mages / Hunters : 20 x Conjured Crystal Water
-- Warlocks : 20 x Conjured Crystal Water & 20 x Conjured Cinnamon Roll
+- Druids / Paladins / Priests : 40 x Hourglass Sand
+- Mages / Hunters : 20 x Hourglass Sand
+- Warlocks : 20 x Hourglass Sand & 20 x Conjured Cinnamon Roll
 
 You can set it up differently if it doesn't suit your needs.
 
@@ -20,7 +20,7 @@ You can set it up differently if it doesn't suit your needs.
 
 ![tradedispenser](https://user-images.githubusercontent.com/24671466/26871282-f6eefc08-4b72-11e7-941f-e6af5f4bf612.png)
 
-- The setting "Display Water/Food stock" [enable/disable] will allow you to broadcast your stock besides the broadcast message
+- The setting "Display Sand/Food stock" [enable/disable] will allow you to broadcast your stock besides the broadcast message
 
 ![tradedispenser_stock](https://user-images.githubusercontent.com/24671466/26871775-987ccbe4-4b74-11e7-85c6-3343253bb652.png)
 
@@ -48,3 +48,4 @@ The only thing that can be bannable is if you try to abuse from this addon (for 
 ## Credits
 
 Kaboom the original author
+Sand Edition modifications by Feraline@Spineshatter

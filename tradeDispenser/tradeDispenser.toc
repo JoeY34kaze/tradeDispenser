@@ -1,11 +1,11 @@
-## Interface: 11200
-## Title: tradeDispenser V0.96
-## Notes: |cFF7E9CE5Automaticly dispenses specified items to anyone who wants to trades with you                                                           |cFF45E849Use /tD or /tradeDispenser
+## Interface: 11404
+## Title: tradeDispenser V0.96 (Sand Edition)
+## Notes: |cFF7E9CE5Automatically dispenses specified items to anyone who wants to trade with you                                                           |cFF45E849Use /tD or /tradeDispenser
 ## Notes-deDE: |cFF7E9CE5Handelt automatisch verschiedene vorher definierte Items, sobald man angehandelt wird.                                            |cFF45E849Benutze /tradeDispenser & /tD
 ## Notes-ruRU: |cFF7E9CE5јвтоматически раздает указанные предметы тем, кто производит с ¬ами обмен.		 			                                       |cFF45E849»спользуйте /tradeDispenser или /tD
 ## Notes-frFR: |cFF7E9CE5Distribue automatiquement les objets spécifiés а quiconque initie une transaction avec vous                                       |cFF45E849Utilisation /tD ou /tradeDispenser
 ## DefaultState: enabled
-## Author: Kaboom@Arthas(EU)
+## Author: Kaboom@Arthas(EU) - Sand Edition by Feraline@Spineshatter
 ## SavedVariables: tD_GlobalDatas, tD_Datas
 ## SavedVariablesPerCharacter: tD_CharDatas
 tradeDispenser_Localisation.lua

@@ -160,7 +160,7 @@ function tradeDispenserBroadcastItems()
 	if (tD_Temp.isEnabled) then
 		
 		local tradeDispenserChannel, temp = tradeDispenserGetChannel();
-		local waterBag,waterSlot,waterTexture,waterCount 	= tradeDispenserFindItem("Conjured Crystal Water")
+		local sandBag,sandSlot,sandTexture,sandCount 	= tradeDispenserFindItem("Hourglass Sand")
 		local foodBag,foodSlot,foodTexture,foodCount 		= tradeDispenserFindItem("Conjured Cinnamon Roll")
 		if (tradeItems) then tradeDispenserVerbose(1,"tradeItems: "..tradeItems) end
 		
@@ -170,37 +170,37 @@ function tradeDispenserBroadcastItems()
 				message=tD_Loc.defaultBroadcast;
 		else
 			message=tD_CharDatas.RndText[x]
-			if (tD_CharDatas.DisplayStockCheck and waterCount > 0) then
+			if (tD_CharDatas.DisplayStockCheck and sandCount > 0) then
 				local stockStatus = ""
-				if (waterCount+foodCount <= 200) then
+				if (sandCount+foodCount <= 200) then
 					stockStatus = "LOW"
 				end
-				if (waterCount+foodCount > 200) then
+				if (sandCount+foodCount > 200) then
 					stockStatus = "MEDIUM"
 				end
-				if (waterCount+foodCount >= 300) then
+				if (sandCount+foodCount >= 300) then
 					stockStatus = "HIGH"
 				end
 
-				local waterMessage 		= waterCount.." waters"
+				local sandMessage 		= sandCount.." sands"
 				local foodMessage 		= foodCount.." foods"
 				local stockStartmessage	= "[Stock "..stockStatus.." : "
 				local stockEndmessage	= "]"
 				local separatorMessage	= " / "
 				
-				if (waterCount > 0 or foodCount > 0) then
+				if (sandCount > 0 or foodCount > 0) then
 					message = message .. " " .. stockStartmessage
 				end
-				if (waterCount > 0) then
-					message = message .. waterMessage
+				if (sandCount > 0) then
+					message = message .. sandMessage
 				end
-				if (waterCount > 0 and foodCount > 0) then
+				if (sandCount > 0 and foodCount > 0) then
 					message = message .. separatorMessage
 				end
 				if (foodCount > 0) then
 					message = message .. foodMessage
 				end
-				if (waterCount > 0 or foodCount > 0) then
+				if (sandCount > 0 or foodCount > 0) then
 					message = message .. stockEndmessage
 				end
 			end
