@@ -68,6 +68,13 @@ SlashCmdList["AUTOTRADESAND"] = function(msg)
     elseif command == "stop" or command == "off" then
         ATS_Config.enabled = false
         print("|cFFFF0000autoTradeSand disabled!|r")
+    elseif command == "trade" then
+        -- Manual trade command - works even if auto is disabled
+        if TradeFrame:IsVisible() then
+            TradeSand()
+        else
+            print("|cFFFF0000Trade window is not open!|r")
+        end
     elseif command == "status" then
         if ATS_Config.enabled then
             print("|cFF00FF00autoTradeSand is enabled. Will trade " .. ATS_Config.sandCount .. " sand.|r")
@@ -79,6 +86,7 @@ SlashCmdList["AUTOTRADESAND"] = function(msg)
         print("|cFFFFFF00/ats start|r - Enable trading 1 sand")
         print("|cFFFFFF00/ats 2|r - Enable trading 2 sand")
         print("|cFFFFFF00/ats stop|r - Disable trading")
+        print("|cFFFFFF00/ats trade|r - Manually trade sand (if window is open)")
         print("|cFFFFFF00/ats status|r - Show current status")
     end
 end 

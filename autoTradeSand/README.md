@@ -6,6 +6,7 @@ A minimal WoW Classic Era addon that automatically trades Hourglass Sand when so
 
 - **Simple console commands** - No GUI needed
 - **Automatic sand trading** - Just enable and forget
+- **Manual trading** - Use `/ats trade` when you start a trade
 - **Configurable amount** - Trade 1 or 2 sand
 - **Lightweight** - Only 2 files, minimal code
 
@@ -19,16 +20,21 @@ A minimal WoW Classic Era addon that automatically trades Hourglass Sand when so
 
 ### Commands
 
-- `/ats start` - Enable trading 1 sand
-- `/ats 2` - Enable trading 2 sand  
-- `/ats stop` - Disable trading
+- `/ats start` - Enable automatic trading of 1 sand
+- `/ats 2` - Enable automatic trading of 2 sand  
+- `/ats stop` - Disable automatic trading
+- `/ats trade` - Manually trade sand (if trade window is open)
 - `/ats status` - Show current status
 
 ### How it works
 
+**Automatic Mode:**
 1. Type `/ats start` or `/ats 2` to enable
 2. When someone trades with you, it automatically puts sand in the trade window
-3. That's it!
+
+**Manual Mode:**
+1. Start a trade with someone (or have them trade you)
+2. Type `/ats trade` to manually put sand in the trade window
 
 ## Requirements
 
